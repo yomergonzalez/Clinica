@@ -56,9 +56,9 @@ $autoload['packages'] = array();
 | You can also supply an alternative library name to be assigned
 | in the controller:
 |
-|	$autoload['libraries'] = array('user_agent' => 'ua');
+|	$autoload['libraries'] = array('user_agent' => 'ua'); databased
 */
-$autoload['libraries'] = array();
+$autoload['libraries'] = array('session');
 
 /*
 | -------------------------------------------------------------------
@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url');
+$autoload['helper'] = array('url','cookie');
 
 /*
 | -------------------------------------------------------------------
