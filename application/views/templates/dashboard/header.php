@@ -94,7 +94,7 @@
                                         <div class="pull-left">
                                         </div>
                                         <div class="pull-right">
-                                            <a href="user/logout" class="btn btn-default btn-flat">Cerrar Sesion</a>
+                                            <a href="users/logout" class="btn btn-default btn-flat">Cerrar Sesion</a>
                                         </div>
                                     </li>
                                 </ul>
