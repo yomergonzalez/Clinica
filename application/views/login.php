@@ -27,14 +27,15 @@
     <!-- /.login-logo -->
     <div class="login-box-body">
     <p class="login-box-msg">Inicio de sesion</p>
+    <?php echo $this->session->tempdata('error');?>
 
-    <form action="users/login" method="post">
+    <form action="seguridad/login" method="post">
       <div class="form-group has-feedback">
         <input type="email" name="email" class="form-control" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" name="password" class="form-control" placeholder="Password">
+        <input type="password" name="pass" class="form-control" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">

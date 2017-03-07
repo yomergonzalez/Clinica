@@ -1,18 +1,19 @@
 <?php
 
-class Migration_Add_table_controllers_methods extends CI_Migration {
+class Migration_Add_table_config_roles extends CI_Migration {
 
     public function up() {
         $this->dbforge->add_field([
+            'clasificacion_id' => ['type' => 'INT', 'null' => FALSE],
             'controller_id' => ['type' => 'INT', 'null' => FALSE],
             'method_id' => ['type' => 'INT', 'null' => FALSE]
         ]);
-        
-        $this->dbforge->create_table('controllers_methods');
+
+        $this->dbforge->create_table('config_roles');
     }
 
     public function down() {
-        $this->dbforge->drop_table('controllers_methods');
+        $this->dbforge->drop_table('config_roles');
     }
 
 }
