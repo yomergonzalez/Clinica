@@ -1,10 +1,14 @@
 <?php
 
-class Users_model extends CI_Model {
+  public function __construct(){
+  parent :: __construct();
+    $this->load->database();
+  }
 
-    public function __construct() {
-        parent :: __construct();
-    }
+  function verificar_usuario($email,$pass){
+    $this->db->where('email',$email);
+    $this->db->where('pass',$pass);
+    $result = $this->db->get('users');
 
     public function verificar_usuario($data) {
         $result = $this->db->get_where('users', ['email' => $data['email'], 'pass' => $data['pass']]);
