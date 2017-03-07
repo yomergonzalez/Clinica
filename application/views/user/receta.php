@@ -3,7 +3,6 @@
 
 <body class="hold-transition full">
   <div class="col-md-6 col-md-offset-3">
-
         <div class="box box-default box-solid">
             <div class="box-header bg-teal-active with-border">
               <h3 class="box-title">Configuración de Receta Médica</h3>
@@ -30,13 +29,9 @@
                       <label class="col-md-2">Especialidad</label>
                       <div class="col-md-10">
                         <select class="form-control  input-lg select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                          <option selected="selected">Alabama</option>
-                          <option>Alaska</option>
-                          <option>California</option>
-                          <option>Delaware</option>
-                          <option>Tennessee</option>
-                          <option>Texas</option>
-                          <option>Washington</option>
+                          <?php foreach ($specialties as $key => $value) {?>
+                            <option value="<?php echo $value->id?>" ><?php echo $value->name;?></option>
+                          <?php }?>
                         </select>
                       </div>
                   </div>
@@ -56,13 +51,9 @@
                       <label class="col-md-2">Pais</label>
                       <div class="col-md-10">
                         <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                          <option selected="selected">Alabama</option>
-                          <option>Alaska</option>
-                          <option>California</option>
-                          <option>Delaware</option>
-                          <option>Tennessee</option>
-                          <option>Texas</option>
-                          <option>Washington</option>
+                          <?php foreach ($countries as $key => $value) {?>
+                            <option value="<?php echo $value->id?>" ><?php echo $value->nombre;?></option>
+                          <?php }?>
                         </select>
                       </div>
                   </div>
