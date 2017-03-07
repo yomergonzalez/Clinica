@@ -6,7 +6,6 @@ class Migrate extends CI_Controller {
         parent::__construct();
         $this->load->library('migration');
         $this->load->dbforge();
-        $this->load->dbutil();
     }
 
     public function index() {
@@ -14,6 +13,10 @@ class Migrate extends CI_Controller {
             show_error($this->migration->error_string());
         } else
             echo 'Tienes la Version actual de BD!';
+    }
+    
+    public function seeds() {
+        echo 'seed';
     }
 
 }
