@@ -4,7 +4,6 @@ class Migration_Modify_table_user extends CI_Migration {
 
     public function up() {
       $fields = [
-            'email' => ['type' => 'VARCHAR', 'constraint' => '100', 'null' => FALSE],
             'cedula_prof' => ['type' => 'VARCHAR', 'constraint' => '100', 'null' => FALSE],
             'institucion' => ['type' => 'VARCHAR', 'constraint' => '100', 'null' => FALSE],
             'especialidad_id' => ['type' => 'INT', 'null' => FALSE],

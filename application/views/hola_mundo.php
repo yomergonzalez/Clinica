@@ -1,5 +1,5 @@
 <div class="row"> <!-- OBLIGATORIO UN ROW -->
     <div class="col-xs-12 text-center text-aqua">
-        <h1>Bienvenido!</h1>
+        <?php print_r($this->session->userdata('controller_function')); ?>
     </div>
 </div>
