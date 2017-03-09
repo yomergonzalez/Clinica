@@ -25,7 +25,7 @@ class Auth {
         (!isset($this->ci->session)) ? $this->ci->load->library('session') : false;
         !$this->ci->load->library('user_agent') ? $this->ci->load->library('user_agent') : false;
         $this->controller_function = ['welcome' => ['index'],
-            'migrate' => ['index','seed_roles'], 
+            'migrate' => ['index','seed_roles','seed_prueba'], 
             'seguridad' => ['login'],
             'faker_seeds' => ['users']];
         $this->method_datatables = array('get_emails_history');
@@ -59,7 +59,7 @@ class Auth {
                         $this->ci->session->set_flashdata('acceso_denied', TRUE);
                         redirect('?c=c_principal&m=menu_principal');
                     } else
-                        redirect('?c=c_principal&m=menu_principal');
+                        redirect(base_url().'dashboard');
                 }
             }
         } else if ($this->method != 'mantenimiento') {

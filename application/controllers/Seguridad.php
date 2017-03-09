@@ -18,6 +18,8 @@ class Seguridad extends CI_Controller {
                 redirect(base_url() . 'login');
             } else if (is_array($resultado)) {
                 $permission_setting = $this->roles_setting($resultado[0]['clasificacion_id']);
+//                print_r($permission_setting);
+//                exit('awd');
                 if ($permission_setting == FALSE) {
                     $this->session->set_flashdata('msg', 'Error al asignar roles');
                     redirect(base_url() . 'login');

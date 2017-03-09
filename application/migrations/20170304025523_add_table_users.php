@@ -6,6 +6,7 @@ class Migration_Add_table_users extends CI_Migration {
         $this->dbforge->add_field([
             'id' => ['type' => 'INT', 'auto_increment' => TRUE],
             'clasificacion_id' => ['type' => 'INT', 'null' => FALSE],
+            'status_id' => ['type' => 'INT', 'null' => FALSE],
             'names' => ['type' => 'VARCHAR', 'constraint' => '200', 'null' => FALSE],
             'surnames' => ['type' => 'VARCHAR', 'constraint' => '200', 'null' => FALSE],
             'email' => ['type' => 'VARCHAR', 'constraint' => '200', 'null' => FALSE],

@@ -17,6 +17,9 @@
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css">
+        
+        <!--ARCHIVO CON VARIABLES-->
+        <?php require_once 'application/views/common/v_datos.php'; ?>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,6 +27,20 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+
+        <?php
+        switch ($this->router->method) {
+            case 'admin_accounts':
+                ?>
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/datatables/datatables.min.css">
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/toast/toastr.min.css">
+                <?php
+                break;
+
+            default:
+                break;
+        }
+        ?>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <!-- Site wrapper -->
@@ -31,16 +48,16 @@
 
             <header class="main-header">
                 <!-- Logo -->
-                <a href="../../index2.html" class="logo">
+                <a href="../../index2.html" class="logo hidden-xs">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>A</b>LT</span>
                     <!-- logo for regular state and mobile devices -->
                     <span class="logo-lg"><b>Admin</b>LTE</span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
-                <nav class="navbar navbar-static-top">
+                <nav class="navbar navbar-static-top text-center">
                     <!-- Sidebar toggle button-->
-                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <a href="#" class="sidebar-toggle pull-left" data-toggle="offcanvas" role="button">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -76,7 +93,7 @@
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="http://lorempixel.com/200/200/" class="user-image" alt="User Image">
-                                    <span class="hidden-xs"><?php echo $this->session->names.' '.$this->session->surnames;?></span>
+                                    <span class="hidden-xs"><?php echo $this->session->names . ' ' . $this->session->surnames; ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
@@ -84,7 +101,7 @@
                                         <img src="http://lorempixel.com/200/200/" class="img-circle" alt="User Image">
 
                                         <p>
-                                            <?php echo $this->session->names;?> - Web Developer
+                                            <?php echo $this->session->names; ?> - Web Developer
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
@@ -94,7 +111,7 @@
                                         <div class="pull-left">
                                         </div>
                                         <div class="pull-right">
-                                            <a href="users/logout" class="btn btn-default btn-flat">Cerrar Sesion</a>
+                                            <a href="<?php echo site_url('seguridad/log_out'); ?>" class="btn btn-default btn-flat">Cerrar Sesion</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -117,7 +134,7 @@
                             <img src="http://lorempixel.com/200/200/" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p><?php echo $this->session->names ;?></p>
+                            <p><?php echo $this->session->names; ?></p>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
@@ -125,6 +142,23 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="header">MAIN NAVIGATION</li>
+                        <!--MENU ADMINISTRACION-->
+                        <?php if (key_exists('configuration', $this->session->controller_function)) { ?>
+                            <li class="treeview <?php echo ($this->router->class == 'configuration') ? 'active' : ''; ?>">
+                                <a href="#">
+                                    <i class="fa fa-cogs"></i> <span>Administración</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <?php if (in_array('admin_accounts', $this->session->controller_function['configuration'])) { ?>
+                                    <ul class="treeview-menu">
+                                        <li><a href="<?php echo site_url('configuration/admin_accounts'); ?>"><i class="fa fa-circle-o"></i>Cuentas y Usuarios</a></li>
+                                    </ul>
+                                <?php } ?>
+                            </li>
+                        <?php } ?>
+
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
@@ -145,4 +179,4 @@
             <!-- =============================================== -->
 
             <!-- Content Wrapper. Contains page content -->
-            <main class="content-wrapper">
+            <main style="background-color: #fff !important;" class="content-wrapper">
