@@ -215,7 +215,7 @@
 <!-- SlimScroll -->
 <script src="<?php echo base_url(); ?>assets/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
-<!-- <script src="<?php // echo base_url();   ?>assets/plugins/fastclick/fastclick.js"></script>
+<!-- <script src="<?php // echo base_url();      ?>assets/plugins/fastclick/fastclick.js"></script>
 --><!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>assets/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -224,26 +224,29 @@
 switch ($this->router->method) {
     case 'admin_accounts':
         ?>
-        <script src="<?php echo base_url(); ?>assets/js/datatables/datatables.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
+        <!--<script src="<?php // echo base_url();   ?>assets/js/datatables/datatables.min.js"></script>-->
         <script src="<?php echo base_url(); ?>assets/js/toast/toastr.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/admin_accounts.js"></script>
         <?php
+        break;
+
+    case 'index': //index del controlador persons
+        if ($this->router->class == 'persons') {
+            ?>
+            <script src="<?php echo base_url(); ?>assets/plugins/Preview.min.js"></script>
+            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            <script src="<?php echo base_url(); ?>assets/js/persons.js"></script>
+            <script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
+            <script src="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
+            <?php
+        }
         break;
 
     default:
         break;
 }
 ?>
-<?php if($this->router->class=='persons'){ ?>
-
-  <script src="<?php echo base_url(); ?>assets/plugins/Preview.min.js"></script>
-
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-  <script src="<?php echo base_url(); ?>assets/js/persons.js"></script>
-  <script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
-
-<?php } ?>
 </body>
 </html>

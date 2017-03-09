@@ -160,7 +160,7 @@
                             </li>
                         <?php } ?>
 
-                        <li><a href="persons"><i class="fa fa-circle-o"></i> Pacientes</a></li>
+                            <li><a href="<?php echo site_url('persons'); ?>"><i class="fa fa-circle-o"></i> Pacientes</a></li>
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
