@@ -17,6 +17,7 @@
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         
         <!--ARCHIVO CON VARIABLES-->
         <?php require_once 'application/views/common/v_datos.php'; ?>
@@ -42,7 +43,7 @@
         }
         ?>
     </head>
-    <body class="hold-transition skin-blue sidebar-mini">
+    <body class="hold-transition fixed skin-blue sidebar-mini">
         <!-- Site wrapper -->
         <div class="wrapper">
 
@@ -159,6 +160,7 @@
                             </li>
                         <?php } ?>
 
+                        <li><a href="persons"><i class="fa fa-circle-o"></i> Pacientes</a></li>
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>

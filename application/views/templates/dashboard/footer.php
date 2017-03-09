@@ -234,5 +234,16 @@ switch ($this->router->method) {
         break;
 }
 ?>
+<?php if($this->router->class=='persons'){ ?>
+
+  <script src="<?php echo base_url(); ?>assets/plugins/Preview.min.js"></script>
+
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <script src="<?php echo base_url(); ?>assets/js/persons.js"></script>
+  <script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
+
+<?php } ?>
 </body>
 </html>

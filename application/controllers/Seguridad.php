@@ -15,26 +15,29 @@ class Seguridad extends CI_Controller {
             if ($resultado === FALSE) {
 //                $this->session->set_flashdata('error', TRUE);
                 $this->session->set_tempdata('error', 'Error de Credenciales!', 5);
-                redirect(base_url() . 'login');
+                redirect('login','location');
             } else if (is_array($resultado)) {
+
                 $permission_setting = $this->roles_setting($resultado[0]['clasificacion_id']);
 //                print_r($permission_setting);
 //                exit('awd');
                 if ($permission_setting == FALSE) {
                     $this->session->set_flashdata('msg', 'Error al asignar roles');
-                    redirect(base_url() . 'login');
+                    redirect('login','location');
                 }
 
                 $this->session->set_userdata('controller_function', $permission_setting);
                 $this->session->set_userdata('names', $resultado[0]['names']);
                 $this->session->set_userdata('surnames', $resultado[0]['surnames']);
                 $this->session->set_userdata('email', $resultado[0]['email']);
+                $this->session->set_userdata('id', $resultado[0]['id']);
+
                 //$this->M_seguridad->marcar_conexion($this->session->session_id, get_ip(), get_pais(), $this->agent->agent_string(), date("Y-m-d H:i:s"), 1, $this->session->userdata('usuario'));
-                redirect(base_url() . 'dashboard');
+                redirect('dashboard','location');
 //                echo 'exito';
             }
         } else
-            redirect(base_url() . 'login');
+            redirect('login','location');
     }
 
     private function roles_setting($tipo) {
@@ -62,7 +65,7 @@ class Seguridad extends CI_Controller {
 
     public function log_out() {
         $this->session->sess_destroy();
-        $this->session->all_userdata();
+        //$this->session->all_userdata();
         redirect(base_url());
     }
 
