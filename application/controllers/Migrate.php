@@ -37,14 +37,17 @@ class Migrate extends CI_Controller {
         $methods = [
             ['id' => 1, 'name' => 'index', 'description' => ''],
             ['id' => 2, 'name' => 'log_out', 'description' => 'cierra la session activa del usuario'],
-            ['id' => 3, 'name' => 'index', 'description' => ''],
+            ['id' => 5, 'name' => 'index', 'description' => ''],
+            ['id' => 6, 'name' => 'crear', 'description' => ''],
+            ['id' => 7, 'name' => 'persons_list', 'description' => ''],
           ];
 
         $config_roles = [
             ['clasificacion_id' => 2, 'controller_id' => 1, 'method_id' => 1],
             ['clasificacion_id' => 2, 'controller_id' => 2, 'method_id' => 2],
-            ['clasificacion_id' => 2, 'controller_id' => 3, 'method_id' => 3]
-
+            ['clasificacion_id' => 2, 'controller_id' => 3, 'method_id' => 5],
+            ['clasificacion_id' => 2, 'controller_id' => 3, 'method_id' => 6],
+            ['clasificacion_id' => 2, 'controller_id' => 3, 'method_id' => 7],
         ];
 
         $country = [

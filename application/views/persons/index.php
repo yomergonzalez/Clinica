@@ -17,20 +17,23 @@
 		</tr>
 		</thead>
 		<tbody>
-		<tr>
-			<td><img src="http://lorempixel.com/200/200/" class="img-circle" alt="User Image"></td>
-			<td>joli jpo
-			</td>
-			<td>04/04/1993 - 23 años</td>
-			<td> Masculino</td>
-			<td>88787</td>
-			<td><div class="buttons">
-				<a data-toggle="tooltip" title="Agregar consulta" class="btn btn-social-icon btn-file"><i class="fa fa-plus-circle"></i></a>
-				<a data-toggle="tooltip" title="Editar" class="btn btn-social-icon btn-file"><i class="fa fa-pencil-square-o"></i></a>
-				<a data-toggle="tooltip" title="Ver perfil" class="btn btn-social-icon btn-file"><i class="fa fa-folder-open"></i></a>
-				<a data-toggle="tooltip" title="Eliminar" class="btn btn-social-icon btn-file"><i class="fa fa-trash"></i></a>
-			</div></td>
-		</tr>
+		<?php if($persons_list){ ?>
+		<?php foreach ($persons_list as $key => $value) { ?>
+			<tr id="<?php echo $value['id'];?>">
+				<td><img src="<?php echo $value['photo'];?>" class="img-circle" alt="User Image"></td>
+				<td><?php echo $value['name'];?></td>
+				<td><?php echo $value['birth_date'];?></td>
+				<td> <?php echo $value['sexo'];?></td>
+				<td><?php echo $value['phone'];?></td>
+				<td><div class="buttons">
+					<a data-toggle="tooltip" title="Agregar consulta" class="btn btn-social-icon btn-file"><i class="fa fa-plus-circle"></i></a>
+					<a data-toggle="tooltip" title="Editar" class="btn btn-social-icon btn-file"><i class="fa fa-pencil-square-o"></i></a>
+					<a data-toggle="tooltip" title="Ver perfil" class="btn btn-social-icon btn-file"><i class="fa fa-folder-open"></i></a>
+					<a data-toggle="tooltip" title="Eliminar" class="btn btn-social-icon btn-file"><i class="fa fa-trash"></i></a>
+				</div></td>
+			</tr>
+		<?php 	} 
+		}?>
 		</tfoot>
 	</table>
 </div>
@@ -52,7 +55,7 @@
 									<div class="col-md-3">
 										<div id="image-preview">
 										  <label for="image-upload" id="image-label"><i class="fa fa-camera" aria-hidden="true"></i></label>
-										  <input type="file" name="image" id="image-upload" />
+										  <input type="file" name="image" id="image-upload" accept="image/*"/>
 										</div>
 									</div>
 									<div class="col-md-9">
