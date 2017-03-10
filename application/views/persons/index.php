@@ -5,7 +5,7 @@
 
     <!-- /.box-header -->
     <div class="box-body">
-        <table id="table_pacientes" class="hidden table table-hover">
+        <table id="table_pacientes" class="hidden animated zoomIn table table-hover">
             <thead>
                 <tr>
                     <th></th>
@@ -100,13 +100,14 @@
                                 <label for="address">Direccion</label>
                                 <input type="text" name="address" class="form-control input-lg" id="addres">
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="fecha">Pais</label>
-                                <select class="form-control input-lg" name="country">
-                                    <?php foreach ($countries as $key => $value) { ?>
-                                        <option value="<?php echo $value->id ?>" ><?php echo $value->nombre; ?></option>
-                                    <?php } ?>
-                                </select>
+                            <div class="form-group input-group-lg col-md-6">
+
+                                <label>Pais</label>
+                                   <select name="country" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                  <?php foreach ($countries as $key => $value) {?>
+                                       <option value="<?php echo $value->id?>" ><?php echo $value->nombre;?></option>
+                                     <?php }?>
+                                    </select>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="code">Codigo Postal</label>
@@ -195,9 +196,9 @@
                                 <label for="address">Direccion</label>
                                 <input type="text" name="address" class="address_edit form-control input-lg" id="addres">
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group input-group-lg col-md-6">
                                 <label for="fecha">Pais</label>
-                                <select class="form-control input-lg country_edit" name="country">
+                                <select class="form-control input-lg country_edit select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" name="country">
                                     <?php foreach ($countries as $key => $value) { ?>
                                         <option value="<?php echo $value->id ?>" ><?php echo $value->nombre; ?></option>
                                     <?php } ?>

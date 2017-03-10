@@ -30,20 +30,29 @@ class Persons_model extends CI_Model{
       return ($this->db->affected_rows() != 1) ? false : $this->db->insert_id();
   }
 
-  function update_photo($id,$path){
+  function update_photo($id,$path,$edit=false){
+    //elimina la imagen anterior si esta eeditando 
+    if($edit){
+        $this->db->select('photo');
+        $this->db->where('id', $id);
+        $result = $this->db->get('pacientes');
+        if($result){
+          unlink($result->row()->photo);
+        }
+    }
+
+    //actualiza el paciente agregando la direccion de la imagen
     $this->db->where('id', $id);
     $this->db->set('photo', "'$path'", FALSE);
     $this->db->update('pacientes');
 
+    //cambia el tamaño de la imagen
     $config['image_library'] = 'gd2';
-    $config['source_image'] =  base_url() . $path;
-    $config['maintain_ratio'] = true;
-    $config['width']         = 250;
-    $config['height']       = 250;
-
-
+    $config['source_image'] =  './'.$path;
+    $config['maintain_ratio'] = TRUE;
+    $config['width']         = 300;
+    $config['height']       = 300;
     $this->load->library('image_lib', $config);
-
     $this->image_lib->resize();
 
   }

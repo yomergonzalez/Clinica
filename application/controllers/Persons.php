@@ -78,7 +78,7 @@ class Persons extends CI_Controller {
       }
         $image= FALSE;
 
-        if($paciente && (!empty($_FILES['image']['name']))){
+        if((!empty($_FILES['image']['name']))){
           $config['upload_path']          = $directorio;
           $config['allowed_types']        = 'jpg|png|jpeg';
           $config['max_size']             = 800;
@@ -92,7 +92,7 @@ class Persons extends CI_Controller {
          }
           else
          {
-              $this->Persons_model->update_photo($paciente,$directorio2.$this->upload->data('file_name'));
+              $this->Persons_model->update_photo($this->input->post('id'),$directorio2.$this->upload->data('file_name'),TRUE);
               $image = TRUE;
          }
        }

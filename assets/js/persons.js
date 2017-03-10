@@ -3,6 +3,9 @@ $(function () {
 
 
   paciente_id=0;
+  $.fn.select2.defaults.set( "theme", "bootstrap" );
+  $("body .select2").select2();
+
   var table =   $("#table_pacientes").DataTable({
       "sDom": '<"H" <"toolbar"fr>>tp',
       "destroy": true,
@@ -187,12 +190,15 @@ $("#table_pacientes").on("click",'.button_edit', function(e){
           $('#edit_paciente_form .postal_code_edit').val(data.postal_code);
         if(data.city_id==0)
            $('#edit_paciente_form .city_edit').val('');
-         else
+        else
             $('#edit_paciente_form .city_edit').val(data.city_id);
         if(data.country_id==0)
           $('#edit_paciente_form .country_edit').val('');
         else
            $('#edit_paciente_form .country_edit').val(data.country_id);
+        if(data.photo!='')
+          $('#image-preview2').css('background', 'url('+base_url+data.photo+') no-repeat');
+          $('#image-preview2').css('background-size', '150px 150px');
        })
 
 
@@ -241,8 +247,6 @@ $("#table_pacientes").on("click",'.button_edit', function(e){
                     if(data.success==true && data.image==true){
                       toastr.success('Paciente actualizado con exito!', 'Completado')
                       document.getElementById("edit_paciente_form").reset();
-                      $('#image-preview').css("background-image", "none");
-                      $('#image-label').html("<i class='fa fa-camera' aria-hidden='true'></i>");
                       reset_datatable();
                       $('#actualizar_paciente').modal('hide');
                       $('div.has-error').removeClass('has-error');
@@ -260,13 +264,18 @@ $("#table_pacientes").on("click",'.button_edit', function(e){
                       toastr.success('Paciente actualizado con exito!', 'Completado')
                       toastr.warning('Hubo un problema al subir la foto del paciente', '')
                       document.getElementById("edit_paciente_form").reset();
-                      $('#image-preview').css("background-image", "none");
-                      $('#image-label').html("<i class='fa fa-camera' aria-hidden='true'></i>");
                       reset_datatable();
                       $('#actualizar_paciente').modal('hide');
                       $('div.has-error').removeClass('has-error');
+                    }
 
-
+                    else if(data.success==false && data.image==true){
+                      toastr.success('Imagen actualizada con exito!', 'Completado')
+                      toastr.warning('No hubo cambios en los datos del paciente', '')
+                      document.getElementById("edit_paciente_form").reset();
+                      reset_datatable();
+                      $('#actualizar_paciente').modal('hide');
+                      $('div.has-error').removeClass('has-error');
                     }
                     else{
                       toastr.warning('No se pudo actualizar al paciente', 'Error');

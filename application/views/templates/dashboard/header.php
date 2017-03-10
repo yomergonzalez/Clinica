@@ -41,7 +41,10 @@
 
             case 'index':
                 ?>
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/animate.min.css">
                 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/toast/toastr.min.css">
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/select2/select2.min.css">
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/select2/select2-bootstrap.min.css">
                 <?php
                 break;
 
