@@ -14,7 +14,7 @@ class Migration_Add_table_controllers extends CI_Migration {
     }
 
     public function down() {
-        $this->dbforge->drop_table('controllers');
+        $this->dbforge->drop_table('controllers', TRUE);
     }
 
 }

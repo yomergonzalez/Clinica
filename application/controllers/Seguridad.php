@@ -12,6 +12,7 @@ class Seguridad extends CI_Controller {
     public function login() {
         if ($this->input->post()) {
             $resultado = $this->M_seguridad->check_user($this->input->post());
+//            print_r($resultado);
             if ($resultado === FALSE) {
 //                $this->session->set_flashdata('error', TRUE);
                 $this->session->set_tempdata('error', 'Error de Credenciales!', 5);

@@ -13,7 +13,7 @@ class Migration_Add_table_config_roles extends CI_Migration {
     }
 
     public function down() {
-        $this->dbforge->drop_table('config_roles');
+        $this->dbforge->drop_table('config_roles', TRUE);
     }
 
 }

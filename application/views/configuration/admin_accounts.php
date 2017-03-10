@@ -5,8 +5,8 @@
     <div class="col-xs-12 col-md-6 text-right text-gray hidden-xs">
         <!--        <h3 style="margin-right: 2%">Administrar cuentas y usuarios</h3>-->
         <div style="margin-top: 5px" class="input-group">
-            <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
-            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+            <input type="text" class="form-control" placeholder="Buscar en la tabla" aria-describedby="basic-addon1">
+            <span class="input-group-addon" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
         </div>
     </div>
 
@@ -49,20 +49,25 @@
                                     <input type="text" class="form-control" placeholder="Nombre o Raz&oacute;n Social">
                                 </div>
                             </div>
-                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3">
                                 <label for="tipo" class="control-label">Tipo de Cuenta</label>
                                 <label for="tipo" class="sr-only">Tipo de Cuenta</label>
-                                <select class="form-control" id="select_type"><option class="text-muted" value="0">Seleccione</option></select>
+                                <select class="form-control" id="select_type">
+                                    <option class="text-muted" value="0">Seleccione</option>
+                                    <?php foreach ($cla as $key => $v) {
+                                        echo '<option class="text-muted" value="'.$v['id'].'">'.$v['name'].'</option>';
+                                    } ?>
+                                </select>
                             </div>
-                            <div class="form-group col-xs-3">
-                                <label for="PorcentContra." class="control-label">Porcent. Contra.</label>
-                                <label for="PorcentContra." class="sr-only">Porcent. Contra.</label>
-                                <select class="form-control" id="select_porcent_contra"><option class="text-muted" value="0">Seleccione</option></select>
-                            </div>
-                            <div class="form-group col-xs-2">
-                                <label for="TipoServicio" class="control-label">Tipo Servicio</label>
-                                <label for="TipoServicio" class="sr-only">Tipo Servicio</label>
-                                <select class="form-control" name="select_tipo_servicio" id="select_tipo_servicio"><option class="text-muted" value="0">Seleccione</option></select>
+                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                <label for="pais" class="control-label">Pais</label>
+                                <label for="pais" class="sr-only">Pais</label>
+                                <select class="form-control" id="select_country">
+                                    <option class="text-muted" value="0">Seleccione</option>
+                                    <?php foreach ($country as $key => $v) {
+                                        echo '<option class="text-muted" value="'.$v['id'].'">'.$v['nombre'].'</option>';
+                                    } ?>
+                                </select>
                             </div>
                         <!--</div>-->
                     </form>

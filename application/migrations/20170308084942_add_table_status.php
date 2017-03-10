@@ -15,8 +15,8 @@ class Migration_Add_table_status extends CI_Migration {
     }
 
     public function down() {
-        $this->db->query('ALTER TABLE `medical`.`users` DROP FOREIGN KEY `fk_users_status_1`; ALTER TABLE `medical`.`users` DROP INDEX `fk_users_status_1`;');
-        $this->dbforge->drop_table('status');
+        $this->db->query('ALTER TABLE `medical`.`users` DROP FOREIGN KEY `fk_users_status_1`;');
+        $this->dbforge->drop_table('status', TRUE);
         
     }
 

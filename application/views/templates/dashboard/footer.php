@@ -224,9 +224,8 @@
 switch ($this->router->method) {
     case 'admin_accounts':
         ?>
-        <script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
-        <script src="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
-        <!--<script src="<?php // echo base_url();   ?>assets/js/datatables/datatables.min.js"></script>-->
+        <script src="<?php echo base_url();   ?>assets/js/datatables/datatables.min.js"></script>
+        <!--<script src="<?php // echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script>-->
         <script src="<?php echo base_url(); ?>assets/js/toast/toastr.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/admin_accounts.js"></script>
         <?php
