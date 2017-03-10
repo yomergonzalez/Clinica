@@ -14,7 +14,7 @@ class Migration_Add_table_methods extends CI_Migration {
     }
 
     public function down() {
-        $this->dbforge->drop_table('methods');
+        $this->dbforge->drop_table('methods', TRUE);
     }
 
 }

@@ -7,7 +7,7 @@ class Migration_Add_view_accounts extends CI_Migration {
     }
 
     public function down() {
-        $this->db->query("DROP VIEW `medical`.`v_accounts`;");
+        $this->db->query("DROP VIEW  IF EXISTS `medical`.`v_accounts`;");
         
     }
 

@@ -24,24 +24,23 @@ class Migrate extends CI_Controller {
 
         $cla = [
             ['id' => 1, 'name' => 'Administrador', 'description' => 'Todo'],
-            ['id' => 2, 'name' => 'Consultorio', 'description' => 'Consultorio individual'],
-            ['id' => 3, 'name' => 'Clinica', 'description' => 'Consultorio individual']
+            ['id' => 2, 'name' => 'Medico', 'description' => 'Medico']
         ];
 
         $users = [
-            ['id' => 1, 'clasificacion_id' => 2, 'status_id' => 1, 'names' => 'Charles', 'surnames' => 'Rodriguez',
+            ['id' => 1, 'clasificacion_id' => 2, 'status_id' => 1, 'specialty_id' => 1, 'names' => 'Charles', 'surnames' => 'Rodriguez',
                 'email' => 'charlesrodriguez.dev@gmail.com', 'pass' => '3385cbd1eba92688a4086a1cc04b5c78',
-                'name_org' => 'Clinica Guyana', 'tlf' => '04120840524'],
-            ['id' => 2, 'clasificacion_id' => 1, 'status_id' => 1, 'names' => 'Charles', 'surnames' => 'Rodriguez',
+                'photo' => 'default.png'],
+            ['id' => 2, 'clasificacion_id' => 1, 'status_id' => 1, 'specialty_id' => 1, 'names' => 'Charles', 'surnames' => 'Rodriguez',
                 'email' => 'charlesrodriguez19@gmail.com', 'pass' => '3385cbd1eba92688a4086a1cc04b5c78',
-                'name_org' => 'Clinica Guyana', 'tlf' => '04120840524'],
-            ['id' => 3, 'clasificacion_id' => 2, 'status_id' => 1, 'names' => 'Doctor', 'surnames' => 'jr',
+                'photo' => 'default.png'],
+            ['id' => 3, 'clasificacion_id' => 1, 'status_id' => 1, 'specialty_id' => 1, 'names' => 'prueba', 'surnames' => 'prueba',
+                'email' => 'admin@gmail.com', 'pass' => '3385cbd1eba92688a4086a1cc04b5c78',
+                'photo' => 'default.png'],
+            ['id' => 4, 'clasificacion_id' => 2, 'status_id' => 1, 'specialty_id' => 1, 'names' => 'admin', 'surnames' => 'prueba',
                 'email' => 'doctor@gmail.com', 'pass' => '827ccb0eea8a706c4c34a16891f84e7b',
-                'name_org' => 'Clinica Guyana', 'tlf' => '04120840524'],
-            ['id' => 3, 'clasificacion_id' => 1, 'status_id' => 1, 'names' => 'Admin', 'surnames' => 'jr',
-                'email' => 'admin@gmail.com', 'pass' => '827ccb0eea8a706c4c34a16891f84e7b',
-                'name_org' => 'Clinica Guyana', 'tlf' => '04120840524'],
-        ];
+                'photo' => 'default.png']
+              ];
 
         $controllers = [
             ['id' => 1, 'name' => 'dashboard', 'description' => 'Controlador de vista principal del dashboard'],
@@ -86,7 +85,8 @@ class Migrate extends CI_Controller {
             ['id' => 5, 'nombre' => 'Andorra'],
             ['id' => 6, 'nombre' => 'Angola'],
             ['id' => 7, 'nombre' => 'Anguila'],
-            ['id' => 8, 'nombre' => 'Antártida']
+            ['id' => 8, 'nombre' => 'México'],
+            ['id' => 9, 'nombre' => 'Antártida']
         ];
 
         $specialty = [
@@ -104,15 +104,51 @@ class Migrate extends CI_Controller {
             ['id' => 1, 'name' => 'Activo', 'description' => 'activo', 'color' => 'green'],
             ['id' => 2, 'name' => 'Bloqueado', 'description' => 'Bloqueado', 'color' => 'gray']
         ];
+        
+        $provincias = [
+            ['id' => 1, 'country_id' => 8, 'name' => 'Aguascalientes'],
+            ['id' => 2, 'country_id' => 8, 'name' => 'Baja California'],
+            ['id' => 3, 'country_id' => 8, 'name' => 'Baja California Sur'],
+            ['id' => 4, 'country_id' => 8, 'name' => 'Campeche'],
+            ['id' => 5, 'country_id' => 8, 'name' => 'Chiapas'],
+            ['id' => 6, 'country_id' => 8, 'name' => 'Chihuahua'],
+            ['id' => 7, 'country_id' => 8, 'name' => 'Ciudad de México'],
+            ['id' => 8, 'country_id' => 8, 'name' => 'Coahuila de Zaragoza'],
+            ['id' => 9, 'country_id' => 8, 'name' => 'Colima'],
+            ['id' => 10, 'country_id' => 8, 'name' => 'Durango'],
+            ['id' => 11, 'country_id' => 8, 'name' => 'Guanajuato'],
+            ['id' => 12, 'country_id' => 8, 'name' => 'Guerrero'],
+            ['id' => 13, 'country_id' => 8, 'name' => 'Hidalgo'],
+            ['id' => 14, 'country_id' => 8, 'name' => 'Jalisco'],
+            ['id' => 15, 'country_id' => 8, 'name' => 'México'],
+            ['id' => 16, 'country_id' => 8, 'name' => 'Michoacán de Ocampo'],
+            ['id' => 17, 'country_id' => 8, 'name' => 'Morelos'],
+            ['id' => 18, 'country_id' => 8, 'name' => 'Nayarit'],
+            ['id' => 19, 'country_id' => 8, 'name' => 'Nuevo León'],
+            ['id' => 20, 'country_id' => 8, 'name' => 'Oaxaca'],
+            ['id' => 21, 'country_id' => 8, 'name' => 'Puebla'],
+            ['id' => 22, 'country_id' => 8, 'name' => 'Querétaro de Arteaga'],
+            ['id' => 23, 'country_id' => 8, 'name' => 'Quintana Roo'],
+            ['id' => 24, 'country_id' => 8, 'name' => 'San Luis Potosí'],
+            ['id' => 25, 'country_id' => 8, 'name' => 'Sinaloa'],
+            ['id' => 26, 'country_id' => 8, 'name' => 'Sonora'],
+            ['id' => 27, 'country_id' => 8, 'name' => 'Tabasco'],
+            ['id' => 28, 'country_id' => 8, 'name' => 'Tamaulipas'],
+            ['id' => 29, 'country_id' => 8, 'name' => 'Tlaxcala'],
+            ['id' => 30, 'country_id' => 8, 'name' => 'Veracruz de Ignacio de la Llave'],
+            ['id' => 31, 'country_id' => 8, 'name' => 'Yucatán'],
+            ['id' => 32, 'country_id' => 8, 'name' => 'Zacatecas']
+        ];
 
         $this->db->insert_batch('status', $status);
         $this->db->insert_batch('clasificaciones', $cla);
-        $this->db->insert_batch('users', $users);
         $this->db->insert_batch('controllers', $controllers);
         $this->db->insert_batch('methods', $methods);
         $this->db->insert_batch('config_roles', $config_roles);
         $this->db->insert_batch('country', $country);
-        $this->db->insert_batch('specialty', $specialty);
+        $this->db->insert_batch('provincias', $provincias);
+        $this->db->insert_batch('specialties', $specialty);
+        $this->db->insert_batch('users', $users);
 
 
         echo 'seed roles finalizado';

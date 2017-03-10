@@ -15,7 +15,7 @@ class Migration_Add_table_clasificaciones extends CI_Migration {
     }
 
     public function down() {
-        $this->dbforge->drop_table('clasificaciones');
+        $this->dbforge->drop_table('clasificaciones', TRUE);
     }
 
 }

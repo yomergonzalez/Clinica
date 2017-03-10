@@ -12,6 +12,8 @@ class Configuration extends CI_Controller {
     public function admin_accounts() {
         //rutas, la default es raiz de views / => raiz
         $data['main'] = ['configuration/admin_accounts']; 
+        $data['cla'] = $this->M_configuration->get_clasification(); 
+        $data['country'] = $this->M_configuration->get_country(); 
         $this->load->view('templates/dashboard/dashboard', $data);
     }
     

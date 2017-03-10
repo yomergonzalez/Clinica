@@ -10,11 +10,11 @@ class Migration_Add_table_country_and_specialty extends CI_Migration {
 
         ]);
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('specialty');
+        $this->dbforge->create_table('specialties');
     }
 
     public function down() {
-        $this->dbforge->drop_table('specialty');
+        $this->dbforge->drop_table('specialties', TRUE);
 
     }
 

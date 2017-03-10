@@ -17,7 +17,7 @@ class Migration_Add_table_country extends CI_Migration {
     }
 
     public function down() {
-        $this->dbforge->drop_table('country');
+        $this->dbforge->drop_table('country', TRUE);
 
     }
 

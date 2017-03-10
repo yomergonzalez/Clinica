@@ -26,7 +26,7 @@ class Migration_Add_table_pacientes extends CI_Migration {
     }
 
     public function down() {
-        $this->dbforge->drop_table('pacientes');
+        $this->dbforge->drop_table('pacientes', TRUE);
     }
 
 }
