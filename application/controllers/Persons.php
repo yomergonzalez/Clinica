@@ -5,11 +5,12 @@ class Persons extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+              $this->load->model('Persons_model');
+
     }
 
     public function index() {
       $this->load->model('Config_model');
-      $this->load->model('Persons_model');
       $data['countries']= $this->Config_model->Get_country_list();
       $data['persons_list'] = $this->Persons_model->persons_list();
       $data['main'] = ['persons/index'];
@@ -18,7 +19,6 @@ class Persons extends CI_Controller {
 
 
     public function crear() {
-      $this->load->model('Persons_model');
       $paciente = $this->Persons_model->crear_paciente($this->input->post());
       $directorio = './uploads/'.$this->session->id.'/';
       $directorio2= 'uploads/'.$this->session->id.'/';
@@ -36,9 +36,8 @@ class Persons extends CI_Controller {
           $this->upload->initialize($config);
 
           if ( ! $this->upload->do_upload('image'))
-          {
-                 //$error = array('error' => $this->upload->display_errors);
-                 $image = 'ERROR';
+          {                 //$error = array('error' => $this->upload->display_errors);
+             $image = 'ERROR';
          }
           else
          {
@@ -60,8 +59,44 @@ class Persons extends CI_Controller {
     }
 
     public function persons_list(){
-      $this->load->model('Persons_model');
       echo json_encode(array('data'=> $this->Persons_model->persons_list()));
+
+    }
+
+    public function get_person(){
+      echo json_encode( $this->Persons_model->get_person($this->input->post('id')));
+
+    }
+
+      public function editar(){
+
+      $paciente = $this->Persons_model->editar_paciente($this->input->post());
+      $directorio = './uploads/'.$this->session->id.'/';
+      $directorio2= 'uploads/'.$this->session->id.'/';
+      if (!file_exists($directorio)) {
+          mkdir($directorio, 0777);
+      }
+        $image= FALSE;
+
+        if($paciente && (!empty($_FILES['image']['name']))){
+          $config['upload_path']          = $directorio;
+          $config['allowed_types']        = 'jpg|png|jpeg';
+          $config['max_size']             = 800;
+          $config['encrypt_name']             = TRUE;
+          $this->load->library('upload', $config);
+          $this->upload->initialize($config);
+
+          if ( ! $this->upload->do_upload('image'))
+          {                 //$error = array('error' => $this->upload->display_errors);
+             $image = 'ERROR';
+         }
+          else
+         {
+              $this->Persons_model->update_photo($paciente,$directorio2.$this->upload->data('file_name'));
+              $image = TRUE;
+         }
+       }
+          echo ($paciente)? json_encode(array('success'=> TRUE, 'image' => $image)) : json_encode(array('success'=> FALSE, 'image' => $image));
 
     }
 

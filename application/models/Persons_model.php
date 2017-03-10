@@ -15,14 +15,15 @@ class Persons_model extends CI_Model{
   		   'last_name' =>  $form['last_name'] ,
   		   'birth_date' => $fecha_nac,
          'phone' => $form['phone'],
-         'cellphone' => isset($form['precio'])? $form['precio'] : NULL,
+         'cellphone' => isset($form['cellphone'])? $form['cellphone'] : NULL,
          'email' => isset($form['email'])? $form['email'] : NULL,
          'dni' => isset($form['dni'])? $form['dni'] : NULL,
          'address' => isset($form['address'])? $form['address'] : NULL,
          'country_id' => isset($form['country'])? $form['country'] : NULL,
          'city_id' => isset($form['city'])? $form['city'] : NULL,
          'postal_code' => isset($form['postal_code'])? $form['postal_code'] : NULL,
-  			 'sexo' => $form['sexo']
+  			 'sexo' => $form['sexo'],
+         'photo' => ''
 
   		);
   		$this->db->insert('pacientes', $data);
@@ -34,10 +35,22 @@ class Persons_model extends CI_Model{
     $this->db->set('photo', "'$path'", FALSE);
     $this->db->update('pacientes');
 
+    $config['image_library'] = 'gd2';
+    $config['source_image'] =  base_url() . $path;
+    $config['maintain_ratio'] = true;
+    $config['width']         = 250;
+    $config['height']       = 250;
+
+
+    $this->load->library('image_lib', $config);
+
+    $this->image_lib->resize();
+
   }
 
   function persons_list(){
     $this->db->where('user_id', $this->session->id);
+    $this->db->order_by("id", "desc");
     $result= $this->db->get('pacientes');
 
     if($result->num_rows() > 0){
@@ -45,7 +58,11 @@ class Persons_model extends CI_Model{
       foreach ($array as $key => $value) {
         $array[$key]['birth_date'] =  $array[$key]['birth_date']. ' - '. $this->edad($array[$key]['birth_date']);
         $array[$key]['sexo'] = ($array[$key]['sexo']==1)? 'Masculino' : 'Femenino';
+        $array[$key]['DT_RowId'] = $array[$key]['id'];
+        $array[$key]['photo'] =  ($array[$key]['photo']=='')? '/assets/dist/img/user.png' : $array[$key]['photo'];
+
       }
+
       return $array;
     }else{
       return false;
@@ -70,6 +87,38 @@ class Persons_model extends CI_Model{
     if ($dia_dif < 0 || $mes_dif < 0) $anyo_dif--;
     return $anyo_dif. ' Años';
   }
+
+  function get_person($id){
+    $this->db->where('id',$id);
+    $result = $this->db->get('pacientes');
+   return ($result->num_rows()>0)? $result->row() : false;
+  }
+
+  function editar_paciente($form){
+    $this->db->where('id', $form['id']);
+    $date = date_create($form['birth_date']);
+    $fecha_nac= date_format($date, 'Y-m-d');
+    $data = array(
+         'name' => $form['name'],
+         'last_name' =>  $form['last_name'] ,
+         'birth_date' => $fecha_nac,
+         'phone' => $form['phone'],
+         'cellphone' => isset($form['cellphone'])? $form['cellphone'] : NULL,
+         'email' => isset($form['email'])? $form['email'] : NULL,
+         'dni' => isset($form['dni'])? $form['dni'] : NULL,
+         'address' => isset($form['address'])? $form['address'] : NULL,
+         'country_id' => isset($form['country'])? $form['country'] : NULL,
+         'city_id' => isset($form['city'])? $form['city'] : NULL,
+         'postal_code' => isset($form['postal_code'])? $form['postal_code'] : NULL,
+         'sexo' => $form['sexo']
+         );
+    $this->db->update('pacientes',$data);
+   return  ($this->db->affected_rows()>0)? true : false;
+
+  }
+
+
+ 
 
 
 }

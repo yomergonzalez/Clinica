@@ -235,7 +235,9 @@ switch ($this->router->method) {
     case 'index': //index del controlador persons
         if ($this->router->class == 'persons') {
             ?>
+            <script src="<?php echo base_url(); ?>assets/plugins/blockUI.js"></script>
             <script src="<?php echo base_url(); ?>assets/plugins/Preview.min.js"></script>
+            <script src="<?php echo base_url(); ?>assets/js/toast/toastr.min.js"></script>
             <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
             <script src="<?php echo base_url(); ?>assets/js/persons.js"></script>
             <script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>

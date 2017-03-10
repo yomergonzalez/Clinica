@@ -34,7 +34,13 @@ class Migrate extends CI_Controller {
                 'name_org' => 'Clinica Guyana', 'tlf' => '04120840524'],
             ['id' => 2, 'clasificacion_id' => 1, 'status_id' => 1, 'names' => 'Charles', 'surnames' => 'Rodriguez',
                 'email' => 'charlesrodriguez19@gmail.com', 'pass' => '3385cbd1eba92688a4086a1cc04b5c78',
-                'name_org' => 'Clinica Guyana', 'tlf' => '04120840524']
+                'name_org' => 'Clinica Guyana', 'tlf' => '04120840524'],
+            ['id' => 3, 'clasificacion_id' => 2, 'status_id' => 1, 'names' => 'Doctor', 'surnames' => 'jr',
+                'email' => 'doctor@gmail.com', 'pass' => '827ccb0eea8a706c4c34a16891f84e7b',
+                'name_org' => 'Clinica Guyana', 'tlf' => '04120840524'],
+            ['id' => 3, 'clasificacion_id' => 1, 'status_id' => 1, 'names' => 'Admin', 'surnames' => 'jr',
+                'email' => 'admin@gmail.com', 'pass' => '827ccb0eea8a706c4c34a16891f84e7b',
+                'name_org' => 'Clinica Guyana', 'tlf' => '04120840524'],
         ];
 
         $controllers = [
@@ -50,7 +56,11 @@ class Migrate extends CI_Controller {
             ['id' => 3, 'name' => 'admin_accounts', 'description' => 'administrar usuarios'],
             ['id' => 4, 'name' => 'get_users', 'description' => 'obtiene usuarios'],
             ['id' => 6, 'name' => 'crear', 'description' => ''],
-            ['id' => 7, 'name' => 'persons_list', 'description' => '']
+            ['id' => 7, 'name' => 'persons_list', 'description' => ''],
+            ['id' => 8, 'name' => 'get_person', 'description' => '']
+            ['id' => 9, 'name' => 'editar', 'description' => '']
+
+
         ];
         $config_roles = [
             ['clasificacion_id' => 2, 'controller_id' => 1, 'method_id' => 1],
@@ -62,6 +72,10 @@ class Migrate extends CI_Controller {
             ['clasificacion_id' => 2, 'controller_id' => 4, 'method_id' => 1],
             ['clasificacion_id' => 2, 'controller_id' => 4, 'method_id' => 6],
             ['clasificacion_id' => 2, 'controller_id' => 4, 'method_id' => 7],
+            ['clasificacion_id' => 2, 'controller_id' => 4, 'method_id' => 8],
+            ['clasificacion_id' => 2, 'controller_id' => 4, 'method_id' => 9],
+
+
         ];
 
         $country = [

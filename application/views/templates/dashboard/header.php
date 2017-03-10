@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/loader.css">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css">
@@ -34,6 +35,12 @@
             case 'admin_accounts':
                 ?>
                 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/datatables/datatables.min.css">
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/toast/toastr.min.css">
+                <?php
+                break;
+
+            case 'index':
+                ?>
                 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/toast/toastr.min.css">
                 <?php
                 break;
