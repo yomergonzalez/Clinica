@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>AdminLTE 2 | Blank Page</title>
+        <title>Medical</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.6 -->
@@ -39,6 +39,14 @@
                 <?php
                 break;
 
+            case 'new_c':
+                ?>
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/animate.min.css">
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/toast/toastr.min.css">
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/iCheck/line/_all.css">
+
+                <?php
+                break;
             case 'index':
                 ?>
                 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/animate.min.css">
@@ -63,7 +71,7 @@
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>A</b>LT</span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>Admin</b>LTE</span>
+                    <span class="logo-lg"><b>MEDICAL</b></span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top text-center">
@@ -152,7 +160,7 @@
 
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
-                        <li class="header">MAIN NAVIGATION</li>
+                        <li class="header">PRINCIPAL</li>
                         <!--MENU ADMINISTRACION-->
                         <?php if (key_exists('configuration', $this->session->controller_function)) { ?>
                             <li class="treeview <?php echo ($this->router->class == 'configuration') ? 'active' : ''; ?>">
@@ -171,6 +179,8 @@
                         <?php } ?>
 
                             <li><a href="<?php echo site_url('persons'); ?>"><i class="fa fa-circle-o"></i> Pacientes</a></li>
+                        <li><a href="<?php echo site_url('agenda'); ?>"><i class="fa fa-circle-o"></i> Agenda</a></li>
+
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>

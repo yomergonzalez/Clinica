@@ -46,7 +46,8 @@ class Migrate extends CI_Controller {
             ['id' => 1, 'name' => 'dashboard', 'description' => 'Controlador de vista principal del dashboard'],
             ['id' => 2, 'name' => 'seguridad', 'description' => 'Controlador de seguridad'],
             ['id' => 3, 'name' => 'configuration', 'description' => 'Controlador de configuracion del dashboard'],
-            ['id' => 4, 'name' => 'persons', 'description' => 'Controlador de pacientes']
+            ['id' => 4, 'name' => 'persons', 'description' => 'Controlador de pacientes'],
+            ['id' => 5, 'name' => 'consultation', 'description' => 'Controlador de consultas'],
         ];
 
         $methods = [
@@ -54,10 +55,12 @@ class Migrate extends CI_Controller {
             ['id' => 2, 'name' => 'log_out', 'description' => 'cierra la session activa del usuario'],
             ['id' => 3, 'name' => 'admin_accounts', 'description' => 'administrar usuarios'],
             ['id' => 4, 'name' => 'get_users', 'description' => 'obtiene usuarios'],
-            ['id' => 6, 'name' => 'crear', 'description' => ''],
-            ['id' => 7, 'name' => 'persons_list', 'description' => ''],
-            ['id' => 8, 'name' => 'get_person', 'description' => '']
-            ['id' => 9, 'name' => 'editar', 'description' => '']
+            ['id' => 6, 'name' => 'crear', 'description' => 'crear paciente'],
+            ['id' => 7, 'name' => 'persons_list', 'description' => 'Listado de pacientes'],
+            ['id' => 8, 'name' => 'get_person', 'description' => 'detalles de un paciente'],
+            ['id' => 9, 'name' => 'editar', 'description' => 'editar paciente'],
+            ['id' => 10, 'name' => 'new_c', 'description' => 'nueva consulta'],
+            ['id' => 9, 'name' => 'edit_test', 'description' => 'editar paciente'],
 
 
         ];
@@ -73,6 +76,7 @@ class Migrate extends CI_Controller {
             ['clasificacion_id' => 2, 'controller_id' => 4, 'method_id' => 7],
             ['clasificacion_id' => 2, 'controller_id' => 4, 'method_id' => 8],
             ['clasificacion_id' => 2, 'controller_id' => 4, 'method_id' => 9],
+            ['clasificacion_id' => 2, 'controller_id' => 5, 'method_id' => 10],
 
 
         ];

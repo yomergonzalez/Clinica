@@ -2,6 +2,7 @@
 <div class="box">
     <div class="box-header">
     </div>
+    
 
     <!-- /.box-header -->
     <div class="box-body">
@@ -26,9 +27,9 @@
                             <td> <?php echo $value['sexo']; ?></td>
                             <td><?php echo $value['phone']; ?></td>
                             <td><div class="buttons">
-                                    <a data-toggle="tooltip" title="Agregar consulta" class="btn btn-social-icon btn-file"><i class="fa fa-plus-circle"></i></a>
+                                    <a data-toggle="tooltip" title="Agregar consulta" class="btn_add_consult btn btn-social-icon btn-file"><i class="fa fa-plus-circle"></i></a>
                                     <a data-toggle="tooltip" title="Editar" class="button_edit btn btn-social-icon btn-file"><i class="fa fa-pencil-square-o"></i></a>
-                                    <a data-toggle="tooltip" title="Ver perfil" class="btn btn-social-icon btn-file"><i class="fa fa-folder-open"></i></a>
+                                    <a  data-toggle="tooltip" title="Ver perfil" class="btn_profile btn btn-social-icon btn-file"><i class="fa fa-folder-open"></i></a>
                                     <a data-toggle="tooltip" title="Eliminar" class="btn btn-social-icon btn-file"><i class="fa fa-trash"></i></a>
                                 </div></td>
                         </tr>
@@ -221,6 +222,44 @@
             <div class="modal-footer bg-gray">
                 <button type="button" class="btn btn-lg btn-warning pull-left" data-dismiss="modal">Cancelar</button>
                 <button type="submit" class="btn btn-success btn-lg">Actualizar Paciente</button>
+
+            </div>
+             </form>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+<div id="nueva_consulta" class="modal modal-primary">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Nueva Consulta</h4>
+            </div>
+            <div class=" box box-default">
+                <h2></h2>
+                <form id="motivo_consult" action="persons/edit" enctype="multipart/form-data">
+                    <div class="row">
+                    <div class="col-md-12">
+            
+                            <div class="form-group col-md-12">
+                                <label for="nombre">Motivo de la Consulta</label>
+                                <textarea  name="motivo" class="motivo_input form-control"></textarea> 
+                            </div>
+                      </div>
+                    </div>
+ 
+                    <!-- /.box-body -->
+            </div>
+
+            <div class="modal-footer bg-gray">
+                <button type="button" class="btn btn-lg btn-warning pull-left" data-dismiss="modal">Cancelar</button>
+                <button type="submit" id="submit_motivo" class="btn btn-success btn-lg">Aceptar</button>
 
             </div>
              </form>

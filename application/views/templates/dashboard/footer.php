@@ -231,6 +231,31 @@ switch ($this->router->method) {
         <?php
         break;
 
+    case 'new_c':
+        ?>
+        <script src="<?php echo base_url(); ?>assets/plugins/blockUI.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/jquery.fullPage.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/toast/toastr.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/jquery.confirm.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/jquery.autocomplete.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/consultations.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/iCheck/icheck.min.js"></script>
+
+        <?php
+        break;
+
+
+    case 'show_exp':
+        ?>
+        <script src="<?php echo base_url(); ?>assets/plugins/blockUI.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/toast/toastr.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/jquery.confirm.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/jquery.autocomplete.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/show_exp.js"></script>
+
+        <?php
+        break;
+
     case 'index': //index del controlador persons
         if ($this->router->class == 'persons') {
             ?>

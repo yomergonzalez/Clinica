@@ -145,7 +145,7 @@ function reset_datatable(){
                 {  data: 'birth_date',"width": "20%",className: "tr_align" },
                 {  data: 'sexo',"width": "10%",className: "tr_align" },
                 {  data: 'phone',"width": "20%",className: "tr_align" },
-                {  data: null,"width": "30%",className: "tr_align","defaultContent": "<div class='buttons'><a data-toggle='tooltip' title='Agregar consulta' class='btn btn-social-icon btn-file'><i class='fa fa-plus-circle'></i></a><a data-toggle='tooltip' title='Editar' class='button_edit btn btn-social-icon btn-file'><i class='fa fa-pencil-square-o'></i></a><a data-toggle='tooltip' title='Ver perfil' class='btn btn-social-icon btn-file'><i class='fa fa-folder-open'></i></a><a data-toggle='tooltip' title='Eliminar' class='btn btn-social-icon btn-file'><i class='fa fa-trash'></i></a</div>" }
+                {  data: null,"width": "30%",className: "tr_align","defaultContent": "<div class='buttons'><a data-toggle='tooltip' title='Agregar consulta' class='btn btn-social-icon btn-file'><i class='fa fa-plus-circle'></i></a><a data-toggle='tooltip' title='Editar' class='button_edit btn btn-social-icon btn-file'><i class='fa fa-pencil-square-o'></i></a><a data-toggle='tooltip' title='Ver perfil' class='btn_profile btn btn-social-icon btn-file'><i class='fa fa-folder-open'></i></a><a data-toggle='tooltip' title='Eliminar' class='btn btn-social-icon btn-file'><i class='fa fa-trash'></i></a</div>" }
 
 
               ]
@@ -204,6 +204,42 @@ $("#table_pacientes").on("click",'.button_edit', function(e){
 
   });
 
+$("#table_pacientes").on("click",'.btn_add_consult', function(e){
+    paciente_id = $(this).parents('tr').attr('id');  
+    $('#nueva_consulta').modal('show');
+  });
+
+$("#table_pacientes").on("click",'.btn_profile', function(e){
+    paciente_id = $(this).parents('tr').attr('id');  
+    $(location).attr('href', base_url + 'expedient/show_exp/'+paciente_id);
+  });
+
+
+ $("#motivo_consult").on("submit", function(e){
+      e.preventDefault();
+      input = $(this).find('.motivo_input').val();
+      boton= $('#submit_motivo');
+
+        $.ajax({
+                url: base_url + "consultation/create_consultation",
+                type: "post",
+                dataType: "json",
+                data: 'paciente_id='+paciente_id + '&motivo='+input,
+                 beforeSend : function() {
+                  boton.addClass('disabled');
+
+                    },
+                  error : function(jqXHR, status, error) {
+                      toastr.warning('Ocurrió un problema, intente nuevamente', 'Error');
+                    },
+                  success: function(data) {
+                    boton.removeClass('disabled');
+                    if(data){
+                     $(location).attr('href', base_url +'consultation/new_c/'+data)
+                    }
+                    }
+                });
+});
 
 
  $("#edit_paciente_form").on("submit", function(e){
