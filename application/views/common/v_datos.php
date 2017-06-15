@@ -15,13 +15,13 @@
         "sSearch": "Buscar:",
         "sUrl": "",
         "sInfoThousands": ",",
-        "sLoadingRecords": "Sin Contrataciones Especificas!",
-        "oPaginate": {
+        "sLoadingRecords": "Sin Datos",
+    /*    "oPaginate": {
             "sFirst": "Primero",
             "sLast": "Último",
             "sNext": "Siguiente",
             "sPrevious": "Anterior"
-        },
+        },*/
         "oAria": {
             "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
             "sSortDescending": ": Activar para ordenar la columna de manera descendente"

@@ -263,11 +263,20 @@ class Consultation_model extends CI_Model {
      
   
     public function crear_consulta($form) {
+      $this->db->where('paciente_id', $form['paciente_id']);
+      $count= $this->db->count_all_results('consultation');
+      if($count>0){
+        $tipo=2;
+      }else{
+        $tipo=1;
+      }
     	$data = array(
 	  		'motivo' => $form['motivo'],
 	  		'paciente_id' => $form['paciente_id'],
 	  		'user_id' => $this->session->id,
-	  		'date' => date('Y-m-d h:i:s')
+	  		'date_consulta' => date('Y-m-d h:i:s'),
+        'status_consulta_id'=>2,
+        'tipo_consulta_id'=> $tipo
 	  		);
   		$this->db->insert('consultation', $data);
 		$id= ($this->db->affected_rows() != 1) ? false : $this->db->insert_id();

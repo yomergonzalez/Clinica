@@ -30,7 +30,8 @@
                                     <a data-toggle="tooltip" title="Agregar consulta" class="btn_add_consult btn btn-social-icon btn-file"><i class="fa fa-plus-circle"></i></a>
                                     <a data-toggle="tooltip" title="Editar" class="button_edit btn btn-social-icon btn-file"><i class="fa fa-pencil-square-o"></i></a>
                                     <a  data-toggle="tooltip" title="Ver perfil" class="btn_profile btn btn-social-icon btn-file"><i class="fa fa-folder-open"></i></a>
-                                    <a data-toggle="tooltip" title="Eliminar" class="btn btn-social-icon btn-file"><i class="fa fa-trash"></i></a>
+                                    <a data-toggle="tooltip" target="_blank" title="Vista Impresion" class="btn_print btn btn-social-icon btn-file"><i class="fa fa-print"></i></a>
+                                    <a data-toggle="tooltip" title="Eliminar" class="btn_delete btn btn-social-icon btn-file"><i class="fa fa-trash"></i></a>
                                 </div></td>
                         </tr>
                     <?php }

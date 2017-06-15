@@ -7,7 +7,8 @@ class Expedient_model extends CI_Model {
     }
 
     public function get_paciente($id){
-    $this->db->where('id',$id);
+    $this->db->where('pacientes.id',$id);
+    $this->db->join('sexo', 'sexo.id = pacientes.sexo', 'left');
     $result = $this->db->get('pacientes');
     return ($result->num_rows()>0)? $result->row() : false;
     }
@@ -232,9 +233,12 @@ class Expedient_model extends CI_Model {
         return ($result->num_rows() > 0) ? $result->row() : FALSE;   
     }
 
-    public function get_consultas($paciente_id){
+    public function get_consultas($paciente_id,$limit=false){
         $this->db->where('paciente_id',$paciente_id);
-        $this->db->order_by('date', 'desc');
+        if($limit){
+            $this->db->limit(0,$limit);
+        }
+        $this->db->order_by('date_consulta', 'desc');
         $result= $this->db->get('consultation');
         return ($result->num_rows() > 0) ? $result->result_array() : FALSE;   
     }
@@ -295,4 +299,195 @@ class Expedient_model extends CI_Model {
       return ($this->db->affected_rows() != 1) ? false : true;
         
     }
+
+    public function get_doctor($id){
+        $this->db->where('users.id', $id, FALSE);
+        $this->db->join('establecimientos', 'establecimientos.id = users.establecimiento_id', 'left');
+        $this->db->join('specialty', 'specialty.id = users.especialidad_id', 'left');
+        $doctor= $this->db->get('users');
+        return $doctor->row();
+        
+    }
+
+    private function edad($fecha){
+        list($anyo,$mes,$dia) = explode("-",$fecha);
+        if($anyo==date("Y")){
+          if($mes==date('m')){
+            return '0 Meses';
+          }
+          else{
+            $ct_mes = date("m") - $mes;
+           return  $ct_mes. ' Meses';
+         }
+        }
+
+        $anyo_dif  = date("Y") - $anyo;
+        $mes_dif = date("m") - $mes;
+        $dia_dif   = date("d") - $dia;
+        if ($dia_dif < 0 || $mes_dif < 0) $anyo_dif--;
+        return $anyo_dif. ' Años';
+      }
+
+    public function print_exp($id){
+        $paciente= $this->get_paciente($id);
+        $doctor = $this->get_doctor($paciente->user_id);
+        $heredofamiliares = $this->get_heredofamiliares_list($id);
+        $patologicos = $this->get_patologicos_list($id);
+        $no_patologicos = $this->get_no_patologicos_list($id);
+        $gineco = $this->get_gineco_list($id);
+        $alergias = $this->alergy_list($id);
+        $medicamentos = $this->medicaments_list($id);
+        $consultas= $this->get_consultas($id,5);
+
+        $this->load->library('fpdf');
+        ob_end_clean();
+        $pdf = new FPDF();
+        $pdf->AddPage();
+        $pdf->SetLeftMargin(15);
+        $pdf->SetRightMargin(15);
+        $pdf->SetFont('Arial','B',8);
+        $pdf->SetDrawColor(168,168,168);
+        $pdf->Cell(0,4,'Dr.(a) '.$doctor->names. ' '.$doctor->surnames,0,1,'C');
+        $pdf->Cell(0,4,mb_strtoupper ($doctor->name ).' Ced. Prof:'.$doctor->cedula_prof,0,1,'C');
+        if(!empty($doctor->cellphone)){ //si tiene telefono
+        $pdf->Cell(0,4,'Teléfono Movil:'.$doctor->cellphone,0,1,'C');
+        }
+        $pdf->ln(3);
+        $pdf->Cell(0,4,'HISTORIA CLINICA GENERAL',0,1,'C');
+        $pdf->Cell(0,4,'Fecha:'.date('d-m-Y'),0,1,'C');
+        $pdf->ln(2);
+        $pdf->Cell(0,0,'',1,2,'C');
+        $pdf->ln(3);
+        $pdf->SetFont('Arial','B',9);
+        $pdf->Cell(0,4,'DATOS DEL PACIENTE',0,1,'L');
+        $pdf->ln(3);
+        $pdf->Cell(50,4,'Nombre: ',0,0,'L');
+        $pdf->Cell(30,4,mb_strtoupper ($paciente->name.' '.$paciente->last_name) ,0,1,'L');
+        $pdf->Cell(50,4,'Fecha de Nacimiento: ',0,0,'L');
+        $pdf->Cell(30,4, $paciente->birth_date ,0,1,'L');
+        $pdf->Cell(50,4,'Edad: ',0,0,'L');
+        $pdf->Cell(30,4,$this->edad($paciente->birth_date) ,0,1,'L');
+        $pdf->Cell(50,4,'Sexo: ',0,0,'L');
+        $pdf->Cell(30,4,$paciente->genero ,0,1,'L');
+        $pdf->Cell(50,4,'Domicilio: ',0,0,'L');
+        $pdf->Cell(30,4,$paciente->address ,0,1,'L');
+        $pdf->ln(3);
+        $pdf->Cell(0,0,'',1,2,'C');
+        $pdf->ln(3);
+        $pdf->Cell(0,4,'ANTECEDENTES CLINICOS',0,1,'L');
+        $pdf->SetLeftMargin(21);
+        $pdf->ln(3);
+        $pdf->SetFont('Arial','B',10);
+        $pdf->Cell(50,5,'Hereditarios y Familiares: ',0,1,'L');
+        $pdf->SetLeftMargin(25);
+        $pdf->SetFont('Arial','',9);
+        if(!empty($heredofamiliares['positivos'])){
+            foreach ($heredofamiliares['positivos'] as $key => $value) {
+                $desc= ($value['desc']=='')? '' : '   '. $value['desc'];
+                $pdf->Cell(0,4,$value['name'] .' '.$desc,0,1,'L');
+            }
+        }else{
+            $pdf->Cell(0,4,'NINGUNO ',0,1,'L');
+        }
+        $pdf->SetLeftMargin(21);
+        $pdf->ln(4);        
+        $pdf->SetFont('Arial','B',10);
+        $pdf->Cell(50,5,'Patológicos: ',0,1,'L');
+        $pdf->SetLeftMargin(25);
+        $pdf->SetFont('Arial','',9);
+        if(!empty($patologicos['positivos'])){
+            foreach ($patologicos['positivos'] as $key => $value) {
+                $desc= ($value['desc']=='')? '' : '   '. $value['desc'];
+                $pdf->Cell(0,4,$value['name'] . ' '.$desc,0,1,'L');
+            }
+        }else{
+            $pdf->Cell(0,4,'NINGUNO ',0,1,'L');
+        }
+        $pdf->SetLeftMargin(21);
+        $pdf->ln(4);
+        $pdf->SetFont('Arial','B',10);
+        $pdf->Cell(50,5,'No Patológicos: ',0,1,'L');
+        $pdf->SetLeftMargin(25);
+        $pdf->SetFont('Arial','',9);
+        if(!empty($no_patologicos['positivos'])){
+            foreach ($no_patologicos['positivos'] as $key => $value) {
+                $desc= ($value['desc']=='')? '' : '   '. $value['desc'];
+                $pdf->Cell(0,4,$value['name'] . ' '. $desc,0,1,'L');
+            }
+        }else{
+            $pdf->Cell(0,4,'NINGUNO ',0,1,'L');
+        }
+        if($paciente->sexo==2){
+            $pdf->SetLeftMargin(21);
+            $pdf->ln(4);        
+            $pdf->SetFont('Arial','B',10);
+            $pdf->Cell(50,5,'Ginecológicos: ',0,1,'L');
+            $pdf->SetLeftMargin(25);
+            $pdf->SetFont('Arial','',9);
+            if(!empty($gineco['positivos'])){
+                foreach ($gineco['positivos'] as $key => $value) {
+                    $desc= ($value['desc']=='')? '' : '   '. $value['desc'];
+                    $pdf->Cell(0,4,$value['name'] . ' '. $desc,0,1,'L');
+                }
+            }else{
+                $pdf->Cell(0,4,'NINGUNO ',0,1,'L');
+            }
+        }
+        $pdf->SetLeftMargin(15);
+        $pdf->ln(5);
+        $pdf->Cell(0,0,'',1,2,'C');
+        $pdf->ln(3);
+        $pdf->SetFont('Arial','B',9);
+        $pdf->Cell(0,4,'ALERGIAS',0,1,'L');
+        $pdf->SetLeftMargin(20);
+        $pdf->ln(3);
+        $pdf->SetFont('Arial','',9);
+        if($alergias){
+            foreach ($alergias as $key => $value) {
+                $pdf->Cell(0,4, $value['alergia'],0,1,'L');            
+            }
+        }else{
+            $pdf->Cell(0,4,'NINGUNA ',0,1,'L');
+        }
+        $pdf->SetLeftMargin(15);
+        $pdf->ln(3);
+        $pdf->Cell(0,0,'',1,2,'C');
+        $pdf->ln(3);
+        $pdf->SetFont('Arial','B',9);
+        $pdf->Cell(0,4,'MEDICAMENTOS ACTIVOS',0,1,'L');
+        $pdf->SetLeftMargin(20);
+        $pdf->ln(3);
+        $pdf->SetFont('Arial','',9);
+        if($medicamentos){
+            foreach ($medicamentos as $key => $value) {
+                $pdf->Cell(0,4, $value['medicamento'] ,0,1,'L');            
+            }
+        }else{
+            $pdf->Cell(0,4,'NINGUNO ',0,1,'L');
+        }
+        $pdf->SetLeftMargin(15);      
+        $pdf->ln(3);
+        $pdf->Cell(0,0,'',1,2,'C');
+        $pdf->ln(3);
+        $pdf->SetFont('Arial','B',9);
+        $pdf->Cell(0,4,'CONSULTAS AGENDADAS',0,1,'L');
+        $pdf->ln(3);
+        $pdf->SetFont('Arial','',9);
+        if($consultas){
+            foreach ($consultas as $key => $value) {
+                $pdf->Cell(50,4,'Fecha: ' .$value['date'],0,0,'L');
+                $pdf->Cell(0,4,'Motivo: '. $value['motivo'] ,0,1,'L');            
+            }
+        }else{
+            $pdf->Cell(0,4,'NINGUNA ',0,1,'L');
+        }
+
+      return  $pdf->Output();
+        
+    }
+
+
+
+
+
 }

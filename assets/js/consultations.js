@@ -437,6 +437,26 @@ $(".save_consultation").on('click', function() {
 	});
 
 
+	$('#history').on('show.bs.modal', function (e) {
+		var id = $(this).data('id');
+		var body = $(this).find('.modal-body');
+	  $.ajax({
+                url: base_url + "expedient/history/" + id,
+                type: "post",
+                dataType: "html",
+                 beforeSend : function() {
+                 	body.html('<div class="text-center"><h1><i class="fa fa-refresh fa-spin"></i> </h1></div>')
+                    },
+                  error : function(jqXHR, status, error) {
+                      toastr.warning('Ocurrió un problema, intente nuevamente', 'Error');
+                    },
+                  success: function(data) {
+                  	body.html(data);
+                    }
+              });
+	}) // end history
+
+
 
 
 });

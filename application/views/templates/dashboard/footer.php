@@ -219,18 +219,57 @@
 --><!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>assets/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script>
-<?php
+<!-- <script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script>
+ --><?php
 switch ($this->router->method) {
     case 'admin_accounts':
         ?>
         <script src="<?php echo base_url();   ?>assets/js/datatables/datatables.min.js"></script>
-        <!--<script src="<?php // echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script>-->
         <script src="<?php echo base_url(); ?>assets/js/toast/toastr.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/admin_accounts.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/jquery.confirm.min.js"></script>
+
+        <?php
+        break;
+    case 'estudios':
+        ?>
+        <script src="<?php echo base_url();   ?>assets/js/datatables/datatables.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/toast/toastr.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/estudios.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/jquery.confirm.min.js"></script>
+
+        <?php
+        break;
+    case 'establecimientos':
+        ?>
+        <script src="<?php echo base_url();   ?>assets/js/datatables/datatables.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/toast/toastr.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/establecimientos.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/select2/select2.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/jquery.confirm.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/blockUI.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/Preview.min.js"></script>
+
+        <?php
+        break;
+    case 'especialidades':
+        ?>
+        <script src="<?php echo base_url();   ?>assets/js/datatables/datatables.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/toast/toastr.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/especialidades.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/jquery.confirm.min.js"></script>
+
         <?php
         break;
 
+    case 'diagnosticos':
+        ?>
+        <script src="<?php echo base_url();   ?>assets/js/datatables/datatables.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/toast/toastr.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/diagnosticos.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/jquery.confirm.min.js"></script>
+        <?php
+        break;
     case 'new_c':
         ?>
         <script src="<?php echo base_url(); ?>assets/plugins/blockUI.js"></script>
@@ -267,6 +306,17 @@ switch ($this->router->method) {
             <script src="<?php echo base_url(); ?>assets/js/persons.js"></script>
             <script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
             <script src="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
+            <?php
+        }
+         if ($this->router->class == 'agenda') {
+            ?>
+            <script src="<?php echo base_url();   ?>assets/js/datatables/datatables.min.js"></script>
+            <script src="<?php echo base_url(); ?>assets/plugins/blockUI.js"></script>
+            <script src="<?php echo base_url(); ?>assets/plugins/datepicker/bootstrap-datepicker.js"></script>
+            <script src="<?php echo base_url(); ?>assets/plugins/datepicker/locales/bootstrap-datepicker.es.js"></script>
+            <script src="<?php echo base_url(); ?>assets/plugins/jquery.autocomplete.min.js"></script>
+            <script src="<?php echo base_url(); ?>assets/js/toast/toastr.min.js"></script>
+            <script src="<?php echo base_url(); ?>assets/js/agenda.js"></script>
             <?php
         }
         break;

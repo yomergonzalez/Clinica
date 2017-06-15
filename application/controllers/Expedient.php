@@ -34,6 +34,30 @@ class Expedient extends CI_Controller {
     }
 
 
+    public function print_exp() {
+        $this->Expedient_model->print_exp($this->uri->segment(3));
+    }
+
+
+    public function history() {
+        
+      $this->session->set_userdata('expedient_pacient', $this->uri->segment(3));
+      $data['paciente'] = $this->Expedient_model->get_paciente($this->uri->segment(3));
+      $data['patologicos'] = $this->Expedient_model->get_patologicos();
+      $data['no_patologicos']= $this->Expedient_model->get_no_patologicos();
+      $data['heredofamiliares'] = $this->Expedient_model->get_heredofamiliares();
+      $data['gineco'] = $this->Expedient_model->get_gineco();
+      $data['gineco_list'] = $this->Expedient_model->get_gineco_list($this->uri->segment(3));
+      $data['patologicos_list'] = $this->Expedient_model->get_patologicos_list($this->uri->segment(3));
+      $data['heredofamiliares_list'] = $this->Expedient_model->get_heredofamiliares_list($this->uri->segment(3));
+      $data['no_patologicos_list'] = $this->Expedient_model->get_no_patologicos_list( $this->uri->segment(3));
+      $data['archivos_list'] = $this->Expedient_model->archivos_list($this->uri->segment(3));
+      $data['alergias_list'] = $this->Expedient_model->alergy_list($this->uri->segment(3));
+      $data['medicamentos_list'] = $this->Expedient_model->medicaments_list($this->uri->segment(3));
+      $this->load->view('expedient/history', $data);
+    }
+
+    
     public function upload_file() {
       $directorio = './uploads/'.$this->session->id.'/files/'.$this->session->expedient_pacient.'/';
       $directorio2= 'uploads/'.$this->session->id.'/files/'.$this->session->expedient_pacient.'/';
@@ -103,5 +127,8 @@ class Expedient extends CI_Controller {
     public function save_gineco() {
         echo json_encode($this->Expedient_model->save_gineco($this->input->post(),$this->session->userdata('expedient_pacient')));
     }
+
+
+
 
 }

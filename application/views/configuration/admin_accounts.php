@@ -12,14 +12,14 @@
 
     <div class="col-xs-12 text-muted">
         <div class="table-responsived">
-            <table id="table_accounts" class="table table-condensed">
+            <table id="table_accounts" class="table animated zoomIn  table-striped table-bordered">
                 <thead>
                     <tr>
                         <th>Perfil</th>
                         <th>Usuario</th>
                         <th>Email</th>
                         <th>tipo</th>
-                        <th>clasificacion</th>
+                        <th>Opciones</th>
                     </tr>
                 </thead>
             </table>
@@ -41,41 +41,79 @@
                 <div class="row">
                     <form id="form_add_account">
                         <!--<div class="col-xs-12">-->
-                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                                <label for="cliente" class="control-label">Consultorio o Clinica</label>
-                                <label for="cliente" class="sr-only">Consultorio o Clinica</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-                                    <input type="text" class="form-control" placeholder="Nombre o Raz&oacute;n Social">
-                                </div>
-                            </div>
-                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                                <label for="tipo" class="control-label">Tipo de Cuenta</label>
-                                <label for="tipo" class="sr-only">Tipo de Cuenta</label>
-                                <select class="form-control" id="select_type">
-                                    <option class="text-muted" value="0">Seleccione</option>
-                                    <?php foreach ($cla as $key => $v) {
-                                        echo '<option class="text-muted" value="'.$v['id'].'">'.$v['name'].'</option>';
-                                    } ?>
-                                </select>
-                            </div>
-                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                                <label for="pais" class="control-label">Pais</label>
-                                <label for="pais" class="sr-only">Pais</label>
-                                <select class="form-control" id="select_country">
-                                    <option class="text-muted" value="0">Seleccione</option>
-                                    <?php foreach ($country as $key => $v) {
-                                        echo '<option class="text-muted" value="'.$v['id'].'">'.$v['nombre'].'</option>';
-                                    } ?>
-                                </select>
-                            </div>
-                        <!--</div>-->
+
+                         <div class="form-group col-md-6">
+                            <label class="">Email</label>
+                              <input type="email" name="email" class="form-control input-lg" placeholder="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="">Nombres</label>
+                              <input type="hidden" name="tipo" value="1">
+                              <input type="text" name="first_name" class="form-control input-lg" placeholder="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="">Apellidos</label>
+                              <input type="text" name="last_name" class="form-control input-lg" placeholder="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="">Contraseña</label>
+                              <input type="password" id="password1" name="password1" class="form-control input-lg" placeholder="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="">Repetir Contraseña</label>
+                              <input type="password" id="password2" name="password2" class="form-control input-lg" placeholder="">
+                        </div>
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-resize-small"></span> Close</button>
-                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                <button type="button" id="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="modal_edit_account" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">Editar Cuenta</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form id="form_edit_account">
+                        <!--<div class="col-xs-12">-->
+
+                         <div class="form-group col-md-6">
+                            <label class="">Email</label>
+                              <input type="email" name="email" class="email_edit form-control input-lg" placeholder="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="">Nombres</label>
+                              <input type="hidden" name="tipo" value="1">
+                              <input type="text" name="first_name" class="nombre_edit form-control input-lg" placeholder="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="">Apellidos</label>
+                              <input type="text" name="last_name" class="apellido_edit form-control input-lg" placeholder="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="">Contraseña </label>
+                              <input type="password" id="password1" name="password1" class="form-control input-lg" placeholder="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="">Repetir Contraseña</label>
+                              <input type="password" id="password2" name="password2" class="form-control input-lg" placeholder="">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-resize-small"></span> Close</button>
+                <button type="button" id="submit_edit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
             </div>
         </div>
     </div>

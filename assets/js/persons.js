@@ -145,7 +145,7 @@ function reset_datatable(){
                 {  data: 'birth_date',"width": "20%",className: "tr_align" },
                 {  data: 'sexo',"width": "10%",className: "tr_align" },
                 {  data: 'phone',"width": "20%",className: "tr_align" },
-                {  data: null,"width": "30%",className: "tr_align","defaultContent": "<div class='buttons'><a data-toggle='tooltip' title='Agregar consulta' class='btn btn-social-icon btn-file'><i class='fa fa-plus-circle'></i></a><a data-toggle='tooltip' title='Editar' class='button_edit btn btn-social-icon btn-file'><i class='fa fa-pencil-square-o'></i></a><a data-toggle='tooltip' title='Ver perfil' class='btn_profile btn btn-social-icon btn-file'><i class='fa fa-folder-open'></i></a><a data-toggle='tooltip' title='Eliminar' class='btn btn-social-icon btn-file'><i class='fa fa-trash'></i></a</div>" }
+                {  data: null,"width": "30%",className: "tr_align","defaultContent": "<div class='buttons'><a data-toggle='tooltip' title='Agregar consulta' class='btn btn-social-icon btn-file'><i class='fa fa-plus-circle'></i></a><a data-toggle='tooltip' title='Editar' class='button_edit btn btn-social-icon btn-file'><i class='fa fa-pencil-square-o'></i></a><a data-toggle='tooltip' title='Ver perfil' class='btn_profile btn btn-social-icon btn-file'><i class='fa fa-folder-open'></i></a><a data-toggle='tooltip' target='_blank' title='Vista Impresion' class='btn_print btn btn-social-icon btn-file'><i class='fa fa-print'></i></a><a data-toggle='tooltip' title='Eliminar' class='btn_delete btn btn-social-icon btn-file'><i class='fa fa-trash'></i></a</div>" }
 
 
               ]
@@ -214,6 +214,11 @@ $("#table_pacientes").on("click",'.btn_profile', function(e){
     $(location).attr('href', base_url + 'expedient/show_exp/'+paciente_id);
   });
 
+
+$("#table_pacientes").on("click",'.btn_print', function(e){
+    paciente_id = $(this).parents('tr').attr('id');  
+    $(location).attr('href', base_url + 'expedient/print_exp/'+paciente_id);
+  });
 
  $("#motivo_consult").on("submit", function(e){
       e.preventDefault();

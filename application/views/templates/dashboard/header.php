@@ -34,7 +34,39 @@
         switch ($this->router->method) {
             case 'admin_accounts':
                 ?>
-                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/datatables/datatables.min.css">
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/datatables/DataTables-1.10.13/css/dataTables.bootstrap.min.css">
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/toast/toastr.min.css">
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/animate.min.css">
+                <?php
+                break;
+            case 'estudios':
+                ?>
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/animate.min.css">
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/datatables/DataTables-1.10.13/css/dataTables.bootstrap.min.css">              
+              <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/toast/toastr.min.css">
+                <?php
+                break;
+            case 'establecimientos':
+                ?>
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/animate.min.css">
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/datatables/DataTables-1.10.13/css/dataTables.bootstrap.min.css">              
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/toast/toastr.min.css">
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/select2/select2.min.css">
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/select2/select2-bootstrap.min.css">
+                <?php
+                break;
+            case 'diagnosticos':
+                ?>
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/animate.min.css">
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/datatables/DataTables-1.10.13/css/dataTables.bootstrap.min.css">
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/toast/toastr.min.css">
+                <?php
+                break;
+
+            case 'especialidades':
+                ?>
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/animate.min.css">
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/datatables/DataTables-1.10.13/css/dataTables.bootstrap.min.css">
                 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/toast/toastr.min.css">
                 <?php
                 break;
@@ -49,6 +81,7 @@
                 break;
             case 'index':
                 ?>
+                <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datepicker/datepicker3.css">
                 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/animate.min.css">
                 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/toast/toastr.min.css">
                 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/select2/select2.min.css">
@@ -170,9 +203,33 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </span>
                                 </a>
+
+                                <?php if (in_array('establecimientos', $this->session->controller_function['configuration'])) { ?>
+                                    <ul class="treeview-menu">
+                                        <li><a href="<?php echo site_url('configuration/establecimientos'); ?>"><i class="fa fa-circle-o"></i>Clinicas</a></li>
+                                    </ul>
+                                <?php } ?>
                                 <?php if (in_array('admin_accounts', $this->session->controller_function['configuration'])) { ?>
                                     <ul class="treeview-menu">
                                         <li><a href="<?php echo site_url('configuration/admin_accounts'); ?>"><i class="fa fa-circle-o"></i>Cuentas y Usuarios</a></li>
+                                    </ul>
+                                <?php } ?>
+
+                                <?php if (in_array('diagnosticos', $this->session->controller_function['configuration'])) { ?>
+                                    <ul class="treeview-menu">
+                                        <li><a href="<?php echo site_url('configuration/diagnosticos'); ?>"><i class="fa fa-circle-o"></i>Diagnosticos</a></li>
+                                    </ul>
+                                <?php } ?>
+
+                                <?php if (in_array('especialidades', $this->session->controller_function['configuration'])) { ?>
+                                    <ul class="treeview-menu">
+                                        <li><a href="<?php echo site_url('configuration/especialidades'); ?>"><i class="fa fa-circle-o"></i>Especialidades</a></li>
+                                    </ul>
+                                <?php } ?>
+
+                                <?php if (in_array('estudios', $this->session->controller_function['configuration'])) { ?>
+                                    <ul class="treeview-menu">
+                                        <li><a href="<?php echo site_url('configuration/estudios'); ?>"><i class="fa fa-circle-o"></i>Estudios de gabinete</a></li>
                                     </ul>
                                 <?php } ?>
                             </li>
